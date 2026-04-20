@@ -34,7 +34,6 @@ Tracker = "https://github.com/kunitoki/libclang-ng/issues"
 path = "python/clang/__init__.py"
 
 [tool.hatch.build.targets.wheel]
-packages = ["python/clang"]
 
 [tool.hatch.build.targets.wheel.hooks.custom]
 path = "hatch_build.py"

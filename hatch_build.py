@@ -22,10 +22,9 @@ class CustomBuildHook(BuildHookInterface):
         build_src = os.path.join("build", "src", "clang")
 
         if not os.path.exists(build_src):
+            build_data["packages"] = ["python/clang"]
             return
 
-        # build_src takes over entirely — clear the pyproject.toml packages
-        # so python/clang/ files aren't also included (avoids duplicate ZIP entries).
         build_data["packages"] = []
 
         for dirpath, dirnames, filenames in os.walk(build_src):

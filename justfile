@@ -5,6 +5,10 @@ default:
 version:
     @python3 -c "import sys; sys.path.insert(0, 'python'); from clang import __version__; print(__version__)"
 
+# Bump the version in README.md (run before build-and-deploy to update the version in the README for the next release)
+bump-readme:
+    perl -0pi -e 's/x=(\d+)/"x=" . ($1 + 1)/ge' README.md
+
 # Build wheel with an explicit platform tag
 build-wheel plat:
     WHEEL_PLAT_NAME={{plat}} uv build --wheel

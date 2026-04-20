@@ -103,7 +103,7 @@ jobs:
       with:
         name: wheel-${{ steps.version.outputs.llvm_ver }}-manylinux_2_28_x86_64
         path: dist/*.whl
-        archive: false
+        compression-level: 0
 
   upload-to-pypi:
     name: publish to pypi
@@ -116,7 +116,6 @@ jobs:
       with:
         name: wheel-${{ needs.build-and-deploy.outputs.llvm_ver }}-manylinux_2_28_x86_64
         path: dist/
-        skip-decompress: true
 
     - name: publish to pypi
       uses: pypa/gh-action-pypi-publish@release/v1

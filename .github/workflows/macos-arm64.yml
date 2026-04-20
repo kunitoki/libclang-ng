@@ -106,7 +106,7 @@ jobs:
       with:
         name: wheel-${{ steps.version.outputs.llvm_ver }}-macosx_11_0_arm64
         path: dist/*.whl
-        archive: false
+        compression-level: 0
 
   upload-to-pypi:
     name: publish to pypi
@@ -119,7 +119,6 @@ jobs:
       with:
         name: wheel-${{ needs.build-and-deploy.outputs.llvm_ver }}-macosx_11_0_arm64
         path: dist/
-        skip-decompress: true
 
     - name: publish to pypi
       uses: pypa/gh-action-pypi-publish@release/v1

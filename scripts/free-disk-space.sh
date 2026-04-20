@@ -1,4 +1,5 @@
-#!/usr/bin/env bash
+#!/bin/sh
+
 # Licensed to the Apache Software Foundation (ASF) under one or more
 # contributor license agreements.  See the NOTICE file distributed with
 # this work for additional information regarding copyright ownership.
@@ -14,8 +15,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-
-#
 # The Azure provided machines typically have the following disk allocation:
 # Total space: 85GB
 # Allocated: 67 GB
@@ -24,7 +23,7 @@
 # large directories.
 # The Flink end to end tests download and generate more than 17 GB of files,
 # causing unpredictable behavior and build failures.
-#
+
 echo "=============================================================================="
 echo "Freeing up disk space on CI system"
 echo "=============================================================================="
@@ -32,6 +31,7 @@ echo "==========================================================================
 echo "Listing 100 largest packages"
 dpkg-query -Wf '${Installed-Size}\t${Package}\n' | sort -n | tail -n 100
 df -h
+
 echo "Removing large packages"
 sudo apt-get remove -y '^ghc-8.*'
 sudo apt-get remove -y '^dotnet-.*'
@@ -41,8 +41,8 @@ sudo apt-get remove -y azure-cli google-cloud-sdk hhvm google-chrome-stable fire
 sudo apt-get autoremove -y
 sudo apt-get clean
 df -h
+
 echo "Removing large directories"
-# deleting 15GB
 rm -rf /usr/share/dotnet/
 sudo rm -rf /usr/share/dotnet
 sudo rm -rf /usr/local/lib/android

@@ -1,0 +1,43 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "libclang-ng"
+dynamic = ["version"]
+description = "Clang Python Bindings, mirrored from the official LLVM repo: https://github.com/llvm/llvm-project/tree/main/clang/bindings/python."
+readme = {file = "README.md", content-type = "text/markdown"}
+license = {text = "Apache License 2.0"}
+authors = [{name = "kunitoki", email = "kunitoki@gmail.com"}]
+keywords = ["Clang", "Python", "Bindings"]
+classifiers = [
+  "Development Status :: 5 - Production/Stable",
+  "Intended Audience :: Developers",
+  "Topic :: Software Development :: Compilers",
+  "Operating System :: MacOS :: MacOS X",
+  "Operating System :: Microsoft :: Windows",
+  "Operating System :: POSIX",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.14",
+  "License :: OSI Approved :: Apache Software License",
+]
+requires-python = ">=3.12"
+
+[project.urls]
+Documentation = "https://libclang-ng.readthedocs.io"
+Source = "https://github.com/kunitoki/libclang-ng"
+Tracker = "https://github.com/kunitoki/libclang-ng/issues"
+
+[tool.hatch.version]
+path = "python/clang/__init__.py"
+
+[tool.hatch.build.targets.wheel]
+packages = ["python/clang"]
+
+[tool.hatch.build.targets.wheel.hooks.custom]
+path = "hatch_build.py"
+
+[tool.hatch.build.targets.sdist]
+include = ["python/", "README.md", "LICENSE"]

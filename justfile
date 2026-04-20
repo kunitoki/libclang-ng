@@ -1,0 +1,21 @@
+default:
+    @just --list
+
+# Show current LLVM/package version
+version:
+    @python3 -c "import sys; sys.path.insert(0, 'python'); from clang import __version__; print(__version__)"
+
+# Build wheel with an explicit platform tag
+build-wheel plat:
+    WHEEL_PLAT_NAME={{plat}} uv build --wheel
+
+# Download LLVM source for the current version
+download-llvm:
+    sh scripts/download-llvm.sh
+    sh scripts/update-python.sh
+
+# Build libclang-ng for macOS arm64 (run download-llvm first)
+build-macos-arm64: download-llvm
+    sh scripts/build-macos-arm64.sh
+    cp build/llvm/cmake-build/lib/libclang.dylib build/src/clang/native/
+    @just build-wheel macosx_11_0_arm64

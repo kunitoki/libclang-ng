@@ -12,7 +12,7 @@ libclang-ng
 [![Linux x64](https://github.com/kunitoki/libclang-ng/workflows/linux-amd64/badge.svg)](https://github.com/kunitoki/libclang-ng/actions/workflows/linux-amd64.yml)
 [![Linux Arm64](https://github.com/kunitoki/libclang-ng/workflows/linux-aarch64/badge.svg)](https://github.com/kunitoki/libclang-ng/actions/workflows/linux-aarch64.yml)
 [![MacOS x64](https://github.com/kunitoki/libclang-ng/workflows/macos-amd64/badge.svg)](https://github.com/kunitoki/libclang-ng/actions/workflows/macos-amd64.yml)
-[![MacOS Arm64](https://github.com/kunitoki/libclang-ng/workflows/macos-aarch64/badge.svg)](https://github.com/kunitoki/libclang-ng/actions/workflows/macos-aarch64.yml)
+[![MacOS Arm64](https://github.com/kunitoki/libclang-ng/workflows/macos-arm64/badge.svg)](https://github.com/kunitoki/libclang-ng/actions/workflows/macos-arm64.yml)
 [![Windows x64](https://github.com/kunitoki/libclang-ng/workflows/windows-amd64/badge.svg)](https://github.com/kunitoki/libclang-ng/actions/workflows/windows-amd64.yml)
 [![Windows Arm64](https://github.com/kunitoki/libclang-ng/workflows/windows-aarch64/badge.svg)](https://github.com/kunitoki/libclang-ng/actions/workflows/windows-aarch64.yml)
 

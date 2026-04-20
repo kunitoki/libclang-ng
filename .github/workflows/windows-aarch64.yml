@@ -105,7 +105,6 @@ jobs:
       with:
         name: wheel-${{ steps.version.outputs.llvm_ver }}-win_arm64
         path: dist/*.whl
-        compression-level: 0
 
   upload-to-pypi:
     name: publish to pypi

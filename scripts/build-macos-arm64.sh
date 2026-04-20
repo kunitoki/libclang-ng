@@ -30,6 +30,8 @@ cmake "${TOP_DIR}/build/llvm/src/llvm" \
     -DCMAKE_CXX_FLAGS_RELEASE="-O2 -g -DNDEBUG -static-libgcc -static-libstdc++" \
     -DCMAKE_C_COMPILER="$(brew --prefix gcc@14)/bin/gcc-14" \
     -DCMAKE_CXX_COMPILER="$(brew --prefix gcc@14)/bin/g++-14" \
+    -DCMAKE_C_COMPILER_LAUNCHER=ccache \
+    -DCMAKE_CXX_COMPILER_LAUNCHER=ccache \
     -DCMAKE_OSX_DEPLOYMENT_TARGET="${MACOSX_DEPLOYMENT_TARGET}"
 
 make libclang -j"$(sysctl -n hw.ncpu)"

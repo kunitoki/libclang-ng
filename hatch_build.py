@@ -24,8 +24,10 @@ class CustomBuildHook(BuildHookInterface):
         if not os.path.exists(build_src):
             return
 
-        # Merged build source present: force-include all its files,
-        # overriding the python/clang/ entries from pyproject.toml packages.
+        # build_src takes over entirely — clear the pyproject.toml packages
+        # so python/clang/ files aren't also included (avoids duplicate ZIP entries).
+        build_data["packages"] = []
+
         for dirpath, dirnames, filenames in os.walk(build_src):
             dirnames[:] = [d for d in dirnames if d != "__pycache__"]
             for fname in filenames:

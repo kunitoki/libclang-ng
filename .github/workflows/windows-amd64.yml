@@ -35,6 +35,7 @@ concurrency:
 
 jobs:
   build-and-deploy:
+    if: "!contains(github.event.head_commit.message, 'skip ci')"
     runs-on: windows-latest
     outputs:
       llvm_ver: ${{ steps.version.outputs.llvm_ver }}
@@ -118,6 +119,7 @@ jobs:
       with:
         name: wheel-${{ needs.build-and-deploy.outputs.llvm_ver }}-win_amd64
         path: dist/
+        skip-decompress: true
 
     - name: publish to pypi
       uses: pypa/gh-action-pypi-publish@release/v1

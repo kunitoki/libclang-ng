@@ -38,6 +38,7 @@ concurrency:
 
 jobs:
   build-and-deploy:
+    if: "!contains(github.event.head_commit.message, 'skip ci')"
     runs-on: macos-latest
     outputs:
       llvm_ver: ${{ steps.version.outputs.llvm_ver }}
@@ -118,6 +119,7 @@ jobs:
       with:
         name: wheel-${{ needs.build-and-deploy.outputs.llvm_ver }}-macosx_11_0_arm64
         path: dist/
+        skip-decompress: true
 
     - name: publish to pypi
       uses: pypa/gh-action-pypi-publish@release/v1

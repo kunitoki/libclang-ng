@@ -3,7 +3,7 @@ name: linux-aarch64
 on:
   push:
     branches:
-      - main
+      - master
       - "dev/**"
     tags:
       - "v*"

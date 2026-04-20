@@ -13,36 +13,17 @@ class CustomBuildHook(BuildHookInterface):
         if self.target_name != "wheel":
             return
 
+        plat_name = os.environ.get("WHEEL_PLAT_NAME")
+        if plat_name:
+            build_data["tag"] = f"py3-none-{plat_name}"
+            return
+
         system = platform.system().lower()
         ext = _EXT.get(system)
         if not ext:
             return
 
-        lib_name = f"libclang{ext}"
-        build_src = os.path.join("build", "src", "clang")
-
-        if not os.path.exists(build_src):
-            build_data["packages"] = ["python/clang"]
-            return
-
-        build_data["packages"] = []
-
-        for dirpath, dirnames, filenames in os.walk(build_src):
-            dirnames[:] = [d for d in dirnames if d != "__pycache__"]
-            for fname in filenames:
-                if fname.endswith(".pyc"):
-                    continue
-                src = os.path.join(dirpath, fname)
-                rel = os.path.relpath(src, build_src).replace(os.sep, "/")
-                build_data["force_include"][src] = f"clang/{rel}"
-
-        native = os.path.join(build_src, "native", lib_name)
-        if not os.path.exists(native):
-            return  # no native lib — pure-Python build
-
-        plat_name = os.environ.get("WHEEL_PLAT_NAME")
-        if plat_name:
-            build_data["tag"] = f"py3-none-{plat_name}"
-        else:
+        native = os.path.join("build", "src", "clang", "native", f"libclang{ext}")
+        if os.path.exists(native):
             build_data["pure_python"] = False
             build_data["infer_tag"] = True

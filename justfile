@@ -12,10 +12,10 @@ build-wheel plat:
 # Download LLVM source for the current version
 download-llvm:
     sh scripts/download-llvm.sh
-    sh scripts/update-python.sh
 
 # Build libclang-ng for macOS arm64 (run download-llvm first)
 build-macos-arm64: download-llvm
+    sh scripts/update-python.sh
     sh scripts/build-macos-arm64.sh
     cp build/llvm/cmake-build/lib/libclang.dylib build/src/clang/native/
     @just build-wheel macosx_11_0_arm64

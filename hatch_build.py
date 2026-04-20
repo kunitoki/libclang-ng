@@ -16,6 +16,7 @@ class CustomBuildHook(BuildHookInterface):
         plat_name = os.environ.get("WHEEL_PLAT_NAME")
         if plat_name:
             build_data["tag"] = f"py3-none-{plat_name}"
+            build_data["pure_python"] = False
             return
 
         system = platform.system().lower()

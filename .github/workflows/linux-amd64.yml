@@ -102,6 +102,7 @@ jobs:
       with:
         name: wheel-${{ steps.version.outputs.llvm_ver }}-manylinux_2_28_x86_64
         path: dist/*.whl
+        archive: false
 
   upload-to-pypi:
     name: publish to pypi

@@ -105,6 +105,7 @@ jobs:
       with:
         name: wheel-${{ steps.version.outputs.llvm_ver }}-macosx_10_9_x86_64
         path: dist/*.whl
+        archive: false
 
   upload-to-pypi:
     name: publish to pypi

@@ -32,6 +32,12 @@ Install using **uv**:
 uv pip install libclang-ng==19.1.7
 ```
 
+Best way to specify pinning is to allow for patch updates on the same clang version:
+
+```bash
+pip install "libclang-ng>=20.1.8.0,<21.0.0" --upgrade
+```
+
 Requirements
 ------------
 

@@ -4,7 +4,8 @@ set -eu
 TOP_DIR="$(cd "$(dirname "$0")/.." && pwd -P)"
 cd "$TOP_DIR"
 
-LLVM_VER="${LLVM_VER:-$(python3 -c "import sys; sys.path.insert(0, 'python'); from clang import __version__; print(__version__)")}"
+PKG_VER="${PKG_VER:-$(python3 -c "import sys; sys.path.insert(0, 'python'); from clang import __version__; print(__version__)")}"
+LLVM_VER="${LLVM_VER:-$(echo "$PKG_VER" | cut -d. -f1-3)}"
 TARBALL="llvm-project-${LLVM_VER}.src.tar.xz"
 DEST_DIR="${TOP_DIR}/build/llvm/src"
 

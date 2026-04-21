@@ -4,7 +4,8 @@ set -eu
 TOP_DIR="$(cd "$(dirname "$0")/.." && pwd -P)"
 cd "$TOP_DIR"
 
-LLVM_VER="${LLVM_VER:-$(python3 -c "import sys; sys.path.insert(0, 'python'); from clang import __version__; print(__version__)")}"
+PKG_VER="${PKG_VER:-$(python3 -c "import sys; sys.path.insert(0, 'python'); from clang import __version__; print(__version__)")}"
+LLVM_VER="${LLVM_VER:-$(echo "$PKG_VER" | cut -d. -f1-3)}"
 LLVM_VER_MAJOR="$(echo "$LLVM_VER" | cut -d. -f1)"
 LLVM_BINDINGS="${TOP_DIR}/build/llvm/src/clang/bindings/python/clang"
 SRC_DIR="${TOP_DIR}/build/src/clang"
@@ -41,6 +42,6 @@ content = p.read_text()
 if '__version__' not in content:
     content = content.replace('__all__', '__version__ = \"' + ver + '\"\\n__all__', 1)
     p.write_text(content)
-" "$LLVM_VER" "${SRC_DIR}/__init__.py"
+" "$PKG_VER" "${SRC_DIR}/__init__.py"
 
-echo "build/src/clang/ prepared with LLVM ${LLVM_VER} bindings"
+echo "build/src/clang/ prepared with LLVM ${LLVM_VER} bindings for package ${PKG_VER}"

@@ -55,7 +55,7 @@ Platform Support
 | Windows  | x86_64      | — |
 | Windows  | arm64       | — |
 
-All native libraries are statically linked — there are no external runtime dependencies beyond the standard system libraries (glibc on Linux, system frameworks on macOS, MSVC runtime on Windows).
+All native libraries are statically linked and libcxx headers are bundled in the python package - there are no external runtime dependencies beyond the standard system libraries (glibc on Linux, system frameworks on macOS, MSVC runtime on Windows).
 
 Clang Versions
 --------------

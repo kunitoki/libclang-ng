@@ -103,8 +103,10 @@ jobs:
         cp build/llvm/cmake-build/lib/libclang.so build/src/clang/native/
         cp -r build/llvm/src/clang/lib/Headers/. build/src/clang/native/resource/include/
         cmake -S build/llvm/src/libcxx -B build/llvm/libcxx-config \
-            -DLLVM_DIR=build/llvm/cmake-build/lib/cmake/llvm \
             -DCMAKE_BUILD_TYPE=Release \
+            -DLIBCXX_CXX_ABI=none \
+            -DLIBCXX_ENABLE_SHARED=OFF \
+            -DLIBCXX_ENABLE_STATIC=OFF \
             -DLIBCXX_INCLUDE_TESTS=OFF \
             -DLIBCXX_INCLUDE_BENCHMARKS=OFF \
             -DLIBCXX_INCLUDE_DOCS=OFF

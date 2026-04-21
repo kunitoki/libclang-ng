@@ -3,7 +3,7 @@ libclang-ng
 
 [![PyPI](https://img.shields.io/pypi/v/libclang-ng?x=2)](https://pypi.org/project/libclang-ng)
 [![Python](https://img.shields.io/pypi/pyversions/libclang-ng?x=2)](https://pypi.org/project/libclang-ng)
-[![Downloads](https://img.shields.io/pypi/dw/libclang-ng?x=2)](https://pypi.org/project/libclang-ng)
+[![Downloads](https://img.shields.io/pypi/dw/libclang-ng?x=2)](https://pypistats.org/packages/libclang-ng)
 [![License](https://img.shields.io/pypi/l/libclang-ng?x=2)](https://github.com/kunitoki/libclang-ng/blob/master/LICENSE)
 [![Arch: x64](https://img.shields.io/badge/arch-x86__64-brightgreen?x=2)](https://pypi.org/project/libclang-ng/#files)
 [![Arch: aarch64](https://img.shields.io/badge/arch-aarch64-yellowgreen?x=2)](https://pypi.org/project/libclang-ng/#files)

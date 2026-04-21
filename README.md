@@ -24,18 +24,18 @@ Installation
 
 Install using **pip**:
 ```bash
-pip install libclang-ng==19.1.7
+pip install libclang-ng==20.1.8.1
 ```
 
 Install using **uv**:
 ```bash
-uv pip install libclang-ng==19.1.7
+uv pip install libclang-ng==20.1.8.1
 ```
 
 Best way to specify pinning is to allow for patch updates on the same clang version:
 
 ```bash
-pip install "libclang-ng>=20.1.8.0,<21.0.0" --upgrade
+pip install "libclang-ng>=20.1.8.0,<21.0.0.0" --upgrade
 ```
 
 Requirements

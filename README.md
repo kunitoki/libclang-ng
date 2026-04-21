@@ -1,19 +1,19 @@
 libclang-ng
 ===========
 
-[![PyPI](https://img.shields.io/pypi/v/libclang-ng?x=1)](https://pypi.org/project/libclang-ng)
-[![Python](https://img.shields.io/pypi/pyversions/libclang-ng?x=1)](https://pypi.org/project/libclang-ng)
-[![Downloads](https://img.shields.io/pypi/dw/libclang-ng?x=1)](https://pypi.org/project/libclang-ng)
-[![License](https://img.shields.io/pypi/l/libclang-ng?x=1)](https://github.com/kunitoki/libclang-ng/blob/master/LICENSE)
-[![Arch: x64](https://img.shields.io/badge/arch-x86__64-brightgreen?x=1)](https://pypi.org/project/libclang-ng/#files)
-[![Arch: aarch64](https://img.shields.io/badge/arch-aarch64-yellowgreen?x=1)](https://pypi.org/project/libclang-ng/#files)
+[![PyPI](https://img.shields.io/pypi/v/libclang-ng?x=2)](https://pypi.org/project/libclang-ng)
+[![Python](https://img.shields.io/pypi/pyversions/libclang-ng?x=2)](https://pypi.org/project/libclang-ng)
+[![Downloads](https://img.shields.io/pypi/dw/libclang-ng?x=2)](https://pypi.org/project/libclang-ng)
+[![License](https://img.shields.io/pypi/l/libclang-ng?x=2)](https://github.com/kunitoki/libclang-ng/blob/master/LICENSE)
+[![Arch: x64](https://img.shields.io/badge/arch-x86__64-brightgreen?x=2)](https://pypi.org/project/libclang-ng/#files)
+[![Arch: aarch64](https://img.shields.io/badge/arch-aarch64-yellowgreen?x=2)](https://pypi.org/project/libclang-ng/#files)
 
-[![Linux x64](https://github.com/kunitoki/libclang-ng/workflows/linux-amd64/badge.svg?x=1)](https://github.com/kunitoki/libclang-ng/actions/workflows/linux-amd64.yml)
-[![Linux Arm64](https://github.com/kunitoki/libclang-ng/workflows/linux-aarch64/badge.svg?x=1)](https://github.com/kunitoki/libclang-ng/actions/workflows/linux-aarch64.yml)
-[![MacOS x64](https://github.com/kunitoki/libclang-ng/workflows/macos-amd64/badge.svg?x=1)](https://github.com/kunitoki/libclang-ng/actions/workflows/macos-amd64.yml)
-[![MacOS Arm64](https://github.com/kunitoki/libclang-ng/workflows/macos-arm64/badge.svg?x=1)](https://github.com/kunitoki/libclang-ng/actions/workflows/macos-arm64.yml)
-[![Windows x64](https://github.com/kunitoki/libclang-ng/workflows/windows-amd64/badge.svg?x=1)](https://github.com/kunitoki/libclang-ng/actions/workflows/windows-amd64.yml)
-[![Windows Arm64](https://github.com/kunitoki/libclang-ng/workflows/windows-aarch64/badge.svg?x=1)](https://github.com/kunitoki/libclang-ng/actions/workflows/windows-aarch64.yml)
+[![Linux x64](https://github.com/kunitoki/libclang-ng/workflows/linux-amd64/badge.svg?x=2)](https://github.com/kunitoki/libclang-ng/actions/workflows/linux-amd64.yml)
+[![Linux Arm64](https://github.com/kunitoki/libclang-ng/workflows/linux-aarch64/badge.svg?x=2)](https://github.com/kunitoki/libclang-ng/actions/workflows/linux-aarch64.yml)
+[![MacOS x64](https://github.com/kunitoki/libclang-ng/workflows/macos-amd64/badge.svg?x=2)](https://github.com/kunitoki/libclang-ng/actions/workflows/macos-amd64.yml)
+[![MacOS Arm64](https://github.com/kunitoki/libclang-ng/workflows/macos-arm64/badge.svg?x=2)](https://github.com/kunitoki/libclang-ng/actions/workflows/macos-arm64.yml)
+[![Windows x64](https://github.com/kunitoki/libclang-ng/workflows/windows-amd64/badge.svg?x=2)](https://github.com/kunitoki/libclang-ng/actions/workflows/windows-amd64.yml)
+[![Windows Arm64](https://github.com/kunitoki/libclang-ng/workflows/windows-aarch64/badge.svg?x=2)](https://github.com/kunitoki/libclang-ng/actions/workflows/windows-aarch64.yml)
 
 `libclang-ng` packages the official [Clang Python Bindings][1] (`clang.cindex`) from the LLVM project and bundles a statically-linked `libclang` shared library for each supported platform. The result is a zero-configuration `pip install` that gives you a working Clang Python API without installing the LLVM toolchain.
 

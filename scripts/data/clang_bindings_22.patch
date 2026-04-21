@@ -1,0 +1,12 @@
+diff -aruN a/python/clang/cindex.py b/python/clang/cindex.py
+--- a/python/clang/cindex.py	2026-04-21 08:11:35
++++ b/python/clang/cindex.py	2026-04-21 08:14:17
+@@ -4464,7 +4467,7 @@
+         else:
+             file = "libclang.so"
+ 
+-        if Config.library_path:
++        if Config.library_path and os.path.isfile(Config.library_path + "/" + file):
+             file = Config.library_path + "/" + file
+ 
+         return file

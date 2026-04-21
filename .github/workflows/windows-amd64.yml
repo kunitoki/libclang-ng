@@ -103,7 +103,17 @@ jobs:
     - name: generate wheel package
       shell: bash
       run: |
+        mkdir -p build/src/clang/native/resource/include build/src/clang/native/libcxx
         cp build/llvm/cmake-build/Release/bin/libclang.dll build/src/clang/native/
+        cp -r build/llvm/src/clang/lib/Headers/. build/src/clang/native/resource/include/
+        cmake -S build/llvm/src/libcxx -B build/llvm/libcxx-config \
+            -DLLVM_DIR=build/llvm/cmake-build/lib/cmake/llvm \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DLIBCXX_INCLUDE_TESTS=OFF \
+            -DLIBCXX_INCLUDE_BENCHMARKS=OFF \
+            -DLIBCXX_INCLUDE_DOCS=OFF
+        cp -r build/llvm/src/libcxx/include/. build/src/clang/native/libcxx/
+        cp -r build/llvm/libcxx-config/include/c++/v1/. build/src/clang/native/libcxx/
         WHEEL_PLAT_NAME=win_amd64 uv build --wheel
 
     - uses: actions/upload-artifact@v7

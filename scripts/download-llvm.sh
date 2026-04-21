@@ -18,7 +18,7 @@ mkdir -p "${TOP_DIR}/build/llvm"
 
 echo "Downloading LLVM ${LLVM_VER}..."
 curl -fL -o "${TOP_DIR}/build/$TARBALL" "https://github.com/llvm/llvm-project/releases/download/llvmorg-${LLVM_VER}/${TARBALL}"
-tar xf "${TOP_DIR}/build/$TARBALL" -C "${TOP_DIR}/build/" --exclude='llvm-project-*/clang/test' --exclude='llvm-project-*/llvm/test'
+tar xf "${TOP_DIR}/build/$TARBALL" -C "${TOP_DIR}/build/" --exclude='llvm-project-*/clang/test' --exclude='llvm-project-*/llvm/test' --exclude='llvm-project-*/llvm/utils/mlgo-utils'
 mv "${TOP_DIR}/build/llvm-project-${LLVM_VER}.src" "$DEST_DIR"
 rm "${TOP_DIR}/build/$TARBALL"
 echo "LLVM ${LLVM_VER} source ready in build/llvm/src/"

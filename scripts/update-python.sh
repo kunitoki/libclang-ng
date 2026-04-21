@@ -5,6 +5,7 @@ TOP_DIR="$(cd "$(dirname "$0")/.." && pwd -P)"
 cd "$TOP_DIR"
 
 LLVM_VER="${LLVM_VER:-$(python3 -c "import sys; sys.path.insert(0, 'python'); from clang import __version__; print(__version__)")}"
+LLVM_VER_MAJOR="$(echo "$LLVM_VER" | cut -d. -f1)"
 LLVM_BINDINGS="${TOP_DIR}/build/llvm/src/clang/bindings/python/clang"
 SRC_DIR="${TOP_DIR}/build/src/clang"
 
@@ -28,7 +29,7 @@ cp "${LLVM_BINDINGS}/cindex.py" "${SRC_DIR}/cindex.py"
 
 # Apply our patch (run from build/src so -p2 strips a/python/ → clang/cindex.py)
 cd "${TOP_DIR}/build/src"
-patch -p2 < "${TOP_DIR}/scripts/data/clang_bindings.patch"
+patch -p2 < "${TOP_DIR}/scripts/data/clang_bindings_${LLVM_VER_MAJOR}.patch"
 rm -f "${SRC_DIR}/cindex.py.orig"
 
 # Restore __version__ (upstream __init__.py does not carry it)

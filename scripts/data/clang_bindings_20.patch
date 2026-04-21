@@ -1,0 +1,31 @@
+diff -aruN a/python/clang/cindex.py b/python/clang/cindex.py
+--- a/python/clang/cindex.py	2026-04-21 08:11:35
++++ b/python/clang/cindex.py	2026-04-21 08:14:17
+@@ -1552,6 +1552,9 @@
+ 
+         return cursor
+ 
++    def __hash__(self):
++        return self.hash
++
+     def __eq__(self, other):
+         return conf.lib.clang_equalCursors(self, other)  # type: ignore [no-any-return]
+ 
+@@ -4094,7 +4097,7 @@
+ 
+ 
+ class Config:
+-    library_path = None
++    library_path = os.environ.get("LIBCLANG_LIBRARY_PATH", os.path.join(os.path.dirname(os.path.realpath(__file__)), "native"))
+     library_file: str | None = None
+     compatibility_check = True
+     loaded = False
+@@ -4169,7 +4172,7 @@
+         else:
+             file = "libclang.so"
+ 
+-        if Config.library_path:
++        if Config.library_path and os.path.isfile(Config.library_path + "/" + file):
+             file = Config.library_path + "/" + file
+ 
+         return file

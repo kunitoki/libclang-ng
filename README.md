@@ -5,7 +5,6 @@ libclang-ng
 [![Python](https://img.shields.io/pypi/pyversions/libclang-ng?x=1)](https://pypi.org/project/libclang-ng)
 [![Downloads](https://img.shields.io/pypi/dw/libclang-ng?x=1)](https://pypi.org/project/libclang-ng)
 [![License](https://img.shields.io/pypi/l/libclang-ng?x=1)](https://github.com/kunitoki/libclang-ng/blob/master/LICENSE)
-
 [![Arch: x64](https://img.shields.io/badge/arch-x86__64-brightgreen?x=1)](https://pypi.org/project/libclang-ng/#files)
 [![Arch: aarch64](https://img.shields.io/badge/arch-aarch64-yellowgreen?x=1)](https://pypi.org/project/libclang-ng/#files)
 
@@ -51,6 +50,14 @@ Platform Support
 | Windows  | arm64       | — |
 
 All native libraries are statically linked — there are no external runtime dependencies beyond the standard system libraries (glibc on Linux, system frameworks on macOS, MSVC runtime on Windows).
+
+Clang Versions
+--------------
+
+Supported clang versions:
+
+- 19.1.7 ([https://github.com/llvm/llvm-project/releases/tag/llvmorg-19.1.7](https://github.com/llvm/llvm-project/releases/tag/llvmorg-19.1.7))
+- 20.1.8 ([https://github.com/llvm/llvm-project/releases/tag/llvmorg-20.1.8](https://github.com/llvm/llvm-project/releases/tag/llvmorg-20.1.8))
 
 Quick Start
 -----------

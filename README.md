@@ -65,6 +65,7 @@ Supported clang versions:
 - 19.1.7 ([https://github.com/llvm/llvm-project/releases/tag/llvmorg-19.1.7](https://github.com/llvm/llvm-project/releases/tag/llvmorg-19.1.7))
 - 20.1.8 ([https://github.com/llvm/llvm-project/releases/tag/llvmorg-20.1.8](https://github.com/llvm/llvm-project/releases/tag/llvmorg-20.1.8))
 - 21.1.8 ([https://github.com/llvm/llvm-project/releases/tag/llvmorg-21.1.8](https://github.com/llvm/llvm-project/releases/tag/llvmorg-21.1.8))
+- 22.1.4 ([https://github.com/llvm/llvm-project/releases/tag/llvmorg-22.1.4](https://github.com/llvm/llvm-project/releases/tag/llvmorg-22.1.4))
 
 Quick Start
 -----------

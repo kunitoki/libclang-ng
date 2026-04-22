@@ -17,8 +17,7 @@ sudo docker run --privileged --network=host --rm \
     --platform linux/arm64 \
     -v "${TOP_DIR}:/work" \
     quay.io/pypa/manylinux2014_aarch64:latest \
-    sh -c 'source /opt/rh/devtoolset-11/enable && \
-           mkdir -p /work/build/llvm/cmake-build && \
+    sh -c 'mkdir -p /work/build/llvm/cmake-build && \
            cd /work/build/llvm/cmake-build && \
            cmake /work/build/llvm/src/llvm \
              -DLLVM_ENABLE_PROJECTS=clang \

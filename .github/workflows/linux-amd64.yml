@@ -70,7 +70,7 @@ jobs:
       uses: actions/cache/restore@v5
       with:
         path: build/llvm/cmake-build/lib/libclang.so.${{ steps.version.outputs.llvm_ver }}.linux-amd64.tar.gz
-        key: libclang.so.${{ steps.version.outputs.llvm_ver }}.linux-amd64.tar.gz
+        key: libclang.so.${{ steps.version.outputs.llvm_ver }}.v2.linux-amd64.tar.gz
 
     - name: get llvm-project
       run: sh scripts/download-llvm.sh
@@ -91,7 +91,7 @@ jobs:
     - uses: actions/cache/save@v5
       if: steps.cache-libclang.outputs.cache-hit != 'true'
       with:
-        key: libclang.so.${{ steps.version.outputs.llvm_ver }}.linux-amd64.tar.gz
+        key: libclang.so.${{ steps.version.outputs.llvm_ver }}.v2.linux-amd64.tar.gz
         path: build/llvm/cmake-build/lib/libclang.so.${{ steps.version.outputs.llvm_ver }}.linux-amd64.tar.gz
 
     - name: extract libclang from cached archive
@@ -113,7 +113,7 @@ jobs:
             -DLIBCXX_INCLUDE_DOCS=OFF
         cp -r build/llvm/src/libcxx/include/. build/src/clang/native/libcxx/
         cp -r build/llvm/libcxx-config/include/c++/v1/. build/src/clang/native/libcxx/
-        WHEEL_PLAT_NAME=manylinux_2_28_x86_64 uv build --wheel
+        WHEEL_PLAT_NAME=manylinux2014_x86_64 uv build --wheel
 
     - name: repair wheel with auditwheel
       run: |

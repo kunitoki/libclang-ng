@@ -15,7 +15,7 @@ fi
 
 sudo docker run --privileged --network=host --rm \
     -v "${TOP_DIR}:/work" \
-    quay.io/pypa/manylinux_2_28_x86_64:latest \
+    quay.io/pypa/manylinux2014_x86_64:latest \
     sh -c 'mkdir -p /work/build/llvm/cmake-build && \
            cd /work/build/llvm/cmake-build && \
            cmake /work/build/llvm/src/llvm \

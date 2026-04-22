@@ -120,9 +120,17 @@ jobs:
         cp -r build/llvm/libcxx-config/include/c++/v1/. build/src/clang/native/libcxx/
         WHEEL_PLAT_NAME=manylinux_2_28_aarch64 uv build --wheel
 
+    - name: repair wheel with auditwheel
+      run: |
+        pip install auditwheel
+        auditwheel show dist/*.whl
+        auditwheel repair dist/*.whl -w dist/repaired/
+        rm dist/*.whl
+        mv dist/repaired/*.whl dist/
+
     - uses: actions/upload-artifact@v7
       with:
-        name: wheel-${{ steps.version.outputs.pkg_ver }}-manylinux_2_28_aarch64
+        name: wheel-${{ steps.version.outputs.pkg_ver }}-manylinux_aarch64
         path: dist/*.whl
         compression-level: 0
 
@@ -135,7 +143,7 @@ jobs:
     steps:
     - uses: actions/download-artifact@v8
       with:
-        name: wheel-${{ needs.build-and-deploy.outputs.pkg_ver }}-manylinux_2_28_aarch64
+        name: wheel-${{ needs.build-and-deploy.outputs.pkg_ver }}-manylinux_aarch64
         path: dist/
 
     - name: publish to pypi

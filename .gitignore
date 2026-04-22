@@ -70,4 +70,5 @@ python/clang/native/*.lib
 # Misc cruft
 .DS_Store
 .remember/
+.plans/
 

@@ -10,6 +10,7 @@ readme = {file = "README.md", content-type = "text/markdown"}
 license = {text = "Apache License 2.0"}
 authors = [{name = "kunitoki", email = "kunitoki@gmail.com"}]
 keywords = ["Clang", "Python", "Bindings"]
+requires-python = ">=3.10"
 classifiers = [
   "Development Status :: 5 - Production/Stable",
   "Intended Audience :: Developers",
@@ -18,12 +19,14 @@ classifiers = [
   "Operating System :: Microsoft :: Windows",
   "Operating System :: POSIX",
   "Programming Language :: Python",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.12",
   "Programming Language :: Python :: 3.13",
   "Programming Language :: Python :: 3.14",
   "License :: OSI Approved :: Apache Software License",
 ]
-requires-python = ">=3.12"
 
 [project.urls]
 Documentation = "https://libclang-ng.readthedocs.io"

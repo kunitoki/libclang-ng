@@ -1,5 +1,4 @@
-libclang-ng
-===========
+![Backdrop](https://raw.githubusercontent.com/kunitoki/libclang-ng/main/backdrop.jpeg?x=2)
 
 [![PyPI](https://img.shields.io/pypi/v/libclang-ng?x=2)](https://pypi.org/project/libclang-ng)
 [![Python](https://img.shields.io/pypi/pyversions/libclang-ng?x=2)](https://pypi.org/project/libclang-ng)
@@ -14,6 +13,8 @@ libclang-ng
 [![MacOS Arm64](https://github.com/kunitoki/libclang-ng/workflows/macos-arm64/badge.svg?x=2)](https://github.com/kunitoki/libclang-ng/actions/workflows/macos-arm64.yml)
 [![Windows x64](https://github.com/kunitoki/libclang-ng/workflows/windows-amd64/badge.svg?x=2)](https://github.com/kunitoki/libclang-ng/actions/workflows/windows-amd64.yml)
 [![Windows Arm64](https://github.com/kunitoki/libclang-ng/workflows/windows-aarch64/badge.svg?x=2)](https://github.com/kunitoki/libclang-ng/actions/workflows/windows-aarch64.yml)
+
+# libclang-ng
 
 `libclang-ng` packages the official [Clang Python Bindings][1] (`clang.cindex`) from the LLVM project and bundles a statically-linked `libclang` shared library for each supported platform. The result is a zero-configuration `pip install` that gives you a working Clang Python API without installing the LLVM toolchain.
 

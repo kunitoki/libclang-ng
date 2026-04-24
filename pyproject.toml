@@ -10,6 +10,7 @@ readme = {file = "README.md", content-type = "text/markdown"}
 license = {text = "Apache License 2.0"}
 authors = [{name = "kunitoki", email = "kunitoki@gmail.com"}]
 keywords = ["Clang", "Python", "Bindings"]
+requires-python = ">=3.10"
 classifiers = [
   "Development Status :: 5 - Production/Stable",
   "Intended Audience :: Developers",
@@ -18,26 +19,35 @@ classifiers = [
   "Operating System :: Microsoft :: Windows",
   "Operating System :: POSIX",
   "Programming Language :: Python",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.12",
   "Programming Language :: Python :: 3.13",
   "Programming Language :: Python :: 3.14",
   "License :: OSI Approved :: Apache Software License",
 ]
-requires-python = ">=3.12"
 
 [project.urls]
 Documentation = "https://libclang-ng.readthedocs.io"
 Source = "https://github.com/kunitoki/libclang-ng"
 Tracker = "https://github.com/kunitoki/libclang-ng/issues"
 
+[project.optional-dependencies]
+dev = [
+  "pytest>=9.0",
+  "pytest-xdist>=3.8.0"
+]
+
 [tool.hatch.version]
 path = "python/clang/__init__.py"
 
 [tool.hatch.build.targets.wheel]
-packages = ["python/clang"]
+packages = ["build/src/clang"]
+ignore-vcs = true
 
 [tool.hatch.build.targets.wheel.hooks.custom]
 path = "hatch_build.py"
 
 [tool.hatch.build.targets.sdist]
-include = ["python/", "README.md", "LICENSE"]
+include = ["build/src/", "README.md", "LICENSE"]

@@ -1,20 +1,20 @@
-libclang-ng
-===========
+![Backdrop](https://raw.githubusercontent.com/kunitoki/libclang-ng/master/backdrop.jpg?x=2)
 
-[![PyPI](https://img.shields.io/pypi/v/libclang-ng)](https://pypi.org/project/libclang-ng)
-[![Python](https://img.shields.io/pypi/pyversions/libclang-ng)](https://pypi.org/project/libclang-ng)
-[![Downloads](https://img.shields.io/pypi/dw/libclang-ng)](https://pypi.org/project/libclang-ng)
-[![License](https://img.shields.io/pypi/l/libclang-ng)](https://github.com/kunitoki/libclang-ng/blob/master/LICENSE)
+[![PyPI](https://img.shields.io/pypi/v/libclang-ng?x=2)](https://pypi.org/project/libclang-ng)
+[![Python](https://img.shields.io/pypi/pyversions/libclang-ng?x=2)](https://pypi.org/project/libclang-ng)
+[![Downloads](https://img.shields.io/pypi/dw/libclang-ng?x=2)](https://pypistats.org/packages/libclang-ng)
+[![License](https://img.shields.io/pypi/l/libclang-ng?x=2)](https://github.com/kunitoki/libclang-ng/blob/master/LICENSE)
+[![Arch: x64](https://img.shields.io/badge/arch-x86__64-brightgreen?x=2)](https://pypi.org/project/libclang-ng/#files)
+[![Arch: aarch64](https://img.shields.io/badge/arch-aarch64-yellowgreen?x=2)](https://pypi.org/project/libclang-ng/#files)
 
-[![Arch: x64](https://img.shields.io/badge/arch-x86__64-brightgreen)](https://pypi.org/project/libclang-ng/#files)
-[![Arch: aarch64](https://img.shields.io/badge/arch-aarch64-yellowgreen)](https://pypi.org/project/libclang-ng/#files)
+[![Linux x64](https://github.com/kunitoki/libclang-ng/workflows/linux-amd64/badge.svg?x=2)](https://github.com/kunitoki/libclang-ng/actions/workflows/linux-amd64.yml)
+[![Linux Arm64](https://github.com/kunitoki/libclang-ng/workflows/linux-aarch64/badge.svg?x=2)](https://github.com/kunitoki/libclang-ng/actions/workflows/linux-aarch64.yml)
+[![MacOS x64](https://github.com/kunitoki/libclang-ng/workflows/macos-amd64/badge.svg?x=2)](https://github.com/kunitoki/libclang-ng/actions/workflows/macos-amd64.yml)
+[![MacOS Arm64](https://github.com/kunitoki/libclang-ng/workflows/macos-arm64/badge.svg?x=2)](https://github.com/kunitoki/libclang-ng/actions/workflows/macos-arm64.yml)
+[![Windows x64](https://github.com/kunitoki/libclang-ng/workflows/windows-amd64/badge.svg?x=2)](https://github.com/kunitoki/libclang-ng/actions/workflows/windows-amd64.yml)
+[![Windows Arm64](https://github.com/kunitoki/libclang-ng/workflows/windows-aarch64/badge.svg?x=2)](https://github.com/kunitoki/libclang-ng/actions/workflows/windows-aarch64.yml)
 
-[![Linux x64](https://github.com/kunitoki/libclang-ng/workflows/linux-amd64/badge.svg)](https://github.com/kunitoki/libclang-ng/actions/workflows/linux-amd64.yml)
-[![Linux Arm64](https://github.com/kunitoki/libclang-ng/workflows/linux-aarch64/badge.svg)](https://github.com/kunitoki/libclang-ng/actions/workflows/linux-aarch64.yml)
-[![MacOS x64](https://github.com/kunitoki/libclang-ng/workflows/macos-amd64/badge.svg)](https://github.com/kunitoki/libclang-ng/actions/workflows/macos-amd64.yml)
-[![MacOS Arm64](https://github.com/kunitoki/libclang-ng/workflows/macos-arm64/badge.svg)](https://github.com/kunitoki/libclang-ng/actions/workflows/macos-arm64.yml)
-[![Windows x64](https://github.com/kunitoki/libclang-ng/workflows/windows-amd64/badge.svg)](https://github.com/kunitoki/libclang-ng/actions/workflows/windows-amd64.yml)
-[![Windows Arm64](https://github.com/kunitoki/libclang-ng/workflows/windows-aarch64/badge.svg)](https://github.com/kunitoki/libclang-ng/actions/workflows/windows-aarch64.yml)
+# libclang-ng
 
 `libclang-ng` packages the official [Clang Python Bindings][1] (`clang.cindex`) from the LLVM project and bundles a statically-linked `libclang` shared library for each supported platform. The result is a zero-configuration `pip install` that gives you a working Clang Python API without installing the LLVM toolchain.
 
@@ -25,12 +25,18 @@ Installation
 
 Install using **pip**:
 ```bash
-pip install libclang-ng==19.1.7
+pip install libclang-ng==20.1.8.1
 ```
 
 Install using **uv**:
 ```bash
-uv pip install libclang-ng==19.1.7
+uv pip install libclang-ng==20.1.8.1
+```
+
+Best way to specify pinning is to allow for patch updates on the same clang version:
+
+```bash
+pip install "libclang-ng>=20.1.8.0,<21.0.0.0" --upgrade
 ```
 
 Requirements
@@ -50,7 +56,17 @@ Platform Support
 | Windows  | x86_64      | — |
 | Windows  | arm64       | — |
 
-All native libraries are statically linked — there are no external runtime dependencies beyond the standard system libraries (glibc on Linux, system frameworks on macOS, MSVC runtime on Windows).
+All native libraries are statically linked and libcxx headers are bundled in the python package - there are no external runtime dependencies beyond the standard system libraries (glibc on Linux, system frameworks on macOS, MSVC runtime on Windows).
+
+Clang Versions
+--------------
+
+Supported clang versions:
+
+- 19.1.7 ([https://github.com/llvm/llvm-project/releases/tag/llvmorg-19.1.7](https://github.com/llvm/llvm-project/releases/tag/llvmorg-19.1.7))
+- 20.1.8 ([https://github.com/llvm/llvm-project/releases/tag/llvmorg-20.1.8](https://github.com/llvm/llvm-project/releases/tag/llvmorg-20.1.8))
+- 21.1.8 ([https://github.com/llvm/llvm-project/releases/tag/llvmorg-21.1.8](https://github.com/llvm/llvm-project/releases/tag/llvmorg-21.1.8))
+- 22.1.4 ([https://github.com/llvm/llvm-project/releases/tag/llvmorg-22.1.4](https://github.com/llvm/llvm-project/releases/tag/llvmorg-22.1.4))
 
 Quick Start
 -----------

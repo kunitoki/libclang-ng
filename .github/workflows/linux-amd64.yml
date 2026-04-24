@@ -5,6 +5,7 @@ on:
     branches:
       - master
       - "dev/**"
+      - "release/**"
     tags:
       - "v*"
     paths:
@@ -35,9 +36,11 @@ concurrency:
 
 jobs:
   build-and-deploy:
+    if: "!contains(github.event.head_commit.message, 'skip ci')"
     runs-on: ubuntu-latest
     outputs:
       llvm_ver: ${{ steps.version.outputs.llvm_ver }}
+      pkg_ver: ${{ steps.version.outputs.pkg_ver }}
 
     steps:
     - uses: actions/checkout@v6
@@ -52,19 +55,22 @@ jobs:
     - name: install uv
       uses: astral-sh/setup-uv@v8.0.0
 
-    - name: get llvm version
+    - name: get versions
       id: version
       run: |
-        VER=$(uv run python -c "import sys; sys.path.insert(0, 'python'); from clang import __version__; print(__version__)")
-        echo "LLVM_VER=$VER" >> $GITHUB_ENV
-        echo "llvm_ver=$VER" >> $GITHUB_OUTPUT
+        PKG_VER=$(uv run python -c "import sys; sys.path.insert(0, 'python'); from clang import __version__; print(__version__)")
+        LLVM_VER=$(echo "$PKG_VER" | cut -d. -f1-3)
+        echo "PKG_VER=$PKG_VER" >> $GITHUB_ENV
+        echo "LLVM_VER=$LLVM_VER" >> $GITHUB_ENV
+        echo "pkg_ver=$PKG_VER" >> $GITHUB_OUTPUT
+        echo "llvm_ver=$LLVM_VER" >> $GITHUB_OUTPUT
 
     - name: restore cached libclang
       id: cache-libclang
       uses: actions/cache/restore@v5
       with:
         path: build/llvm/cmake-build/lib/libclang.so.${{ steps.version.outputs.llvm_ver }}.linux-amd64.tar.gz
-        key: libclang.so.${{ steps.version.outputs.llvm_ver }}.linux-amd64.tar.gz
+        key: libclang.so.${{ steps.version.outputs.llvm_ver }}.v2.linux-amd64.tar.gz
 
     - name: setup ccache
       if: steps.cache-libclang.outputs.cache-hit != 'true'
@@ -95,7 +101,7 @@ jobs:
     - uses: actions/cache/save@v5
       if: steps.cache-libclang.outputs.cache-hit != 'true'
       with:
-        key: libclang.so.${{ steps.version.outputs.llvm_ver }}.linux-amd64.tar.gz
+        key: libclang.so.${{ steps.version.outputs.llvm_ver }}.v2.linux-amd64.tar.gz
         path: build/llvm/cmake-build/lib/libclang.so.${{ steps.version.outputs.llvm_ver }}.linux-amd64.tar.gz
 
     - name: extract libclang from cached archive
@@ -104,13 +110,32 @@ jobs:
 
     - name: generate wheel package
       run: |
-        mkdir -p build/src/clang/native
+        mkdir -p build/src/clang/native/resource/include build/src/clang/native/libcxx
         cp build/llvm/cmake-build/lib/libclang.so build/src/clang/native/
-        WHEEL_PLAT_NAME=manylinux_2_28_x86_64 uv build --wheel
+        cp -r build/llvm/src/clang/lib/Headers/. build/src/clang/native/resource/include/
+        cmake -S build/llvm/src/libcxx -B build/llvm/libcxx-config \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DLIBCXX_CXX_ABI=none \
+            -DLIBCXX_ENABLE_SHARED=OFF \
+            -DLIBCXX_ENABLE_STATIC=OFF \
+            -DLIBCXX_INCLUDE_TESTS=OFF \
+            -DLIBCXX_INCLUDE_BENCHMARKS=OFF \
+            -DLIBCXX_INCLUDE_DOCS=OFF
+        cp -r build/llvm/src/libcxx/include/. build/src/clang/native/libcxx/
+        cp -r build/llvm/libcxx-config/include/c++/v1/. build/src/clang/native/libcxx/
+        WHEEL_PLAT_NAME=manylinux2014_x86_64 uv build --wheel
+
+    - name: repair wheel with auditwheel
+      run: |
+        pip install auditwheel
+        auditwheel show dist/*.whl
+        auditwheel repair dist/*.whl -w dist/repaired/
+        rm dist/*.whl
+        mv dist/repaired/*.whl dist/
 
     - uses: actions/upload-artifact@v7
       with:
-        name: wheel-${{ steps.version.outputs.llvm_ver }}-manylinux_2_28_x86_64
+        name: wheel-${{ steps.version.outputs.pkg_ver }}-manylinux_x86_64
         path: dist/*.whl
         compression-level: 0
 
@@ -123,7 +148,7 @@ jobs:
     steps:
     - uses: actions/download-artifact@v8
       with:
-        name: wheel-${{ needs.build-and-deploy.outputs.llvm_ver }}-manylinux_2_28_x86_64
+        name: wheel-${{ needs.build-and-deploy.outputs.pkg_ver }}-manylinux_x86_64
         path: dist/
 
     - name: publish to pypi

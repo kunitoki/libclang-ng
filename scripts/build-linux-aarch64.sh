@@ -21,7 +21,7 @@ sudo docker run --privileged --network=host --rm \
     -v "${TOP_DIR}:/work" \
     -v "${CCACHE_DIR}:/ccache" \
     -e CCACHE_DIR=/ccache \
-    quay.io/pypa/manylinux_2_28_aarch64:latest \
+    quay.io/pypa/manylinux2014_aarch64:latest \
     sh -c 'yum install -y epel-release && yum install -y ccache && \
            mkdir -p /work/build/llvm/cmake-build && \
            cd /work/build/llvm/cmake-build && \

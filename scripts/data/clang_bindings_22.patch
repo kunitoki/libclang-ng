@@ -1,0 +1,49 @@
+--- a/python/clang/cindex.py	2026-04-21 16:14:08
++++ b/python/clang/cindex.py	2026-04-21 16:14:08
+@@ -3403,6 +3403,16 @@
+         """
+         if args is None:
+             args = []
++
++        _extra = []
++        if Config.resource_dir and os.path.isdir(Config.resource_dir):
++            if not any(a == "-resource-dir" for a in args):
++                _extra += ["-resource-dir", Config.resource_dir]
++        if Config.libcxx_dir and os.path.isdir(Config.libcxx_dir):
++            if "-isystem" not in args:
++                _extra += ["-isystem", Config.libcxx_dir]
++        if _extra:
++            args = list(args) + _extra
+ 
+         if unsaved_files is None:
+             unsaved_files = []
+@@ -4388,8 +4398,19 @@
+ 
+ 
+ class Config:
+-    library_path: str | None = os.environ.get("LIBCLANG_LIBRARY_PATH")
++    library_path: str | None = os.environ.get(
++        "LIBCLANG_LIBRARY_PATH",
++        os.path.join(os.path.dirname(os.path.realpath(__file__)), "native"),
++    )
+     library_file: str | None = os.environ.get("LIBCLANG_LIBRARY_FILE")
++    resource_dir: str | None = os.environ.get(
++        "LIBCLANG_RESOURCE_DIR_PATH",
++        os.path.join(os.path.dirname(os.path.realpath(__file__)), "native", "resource"),
++    )
++    libcxx_dir: str | None = os.environ.get(
++        "LIBCLANG_LIBSTDCXX_HEADER_PATH",
++        os.path.join(os.path.dirname(os.path.realpath(__file__)), "native", "libcxx"),
++    )
+     compatibility_check = True
+     loaded = False
+ 
+@@ -4464,7 +4485,7 @@
+         else:
+             file = "libclang.so"
+ 
+-        if Config.library_path:
++        if Config.library_path and os.path.isfile(Config.library_path + "/" + file):
+             file = Config.library_path + "/" + file
+ 
+         return file

@@ -49,7 +49,7 @@ jobs:
       run: ./scripts/free-disk-space.sh || true
 
     - name: set up QEMU
-      uses: docker/setup-qemu-action@v3
+      uses: docker/setup-qemu-action@v4
       with:
         platforms: arm64
 
@@ -76,6 +76,16 @@ jobs:
       with:
         path: build/llvm/cmake-build/lib/libclang.so.${{ steps.version.outputs.llvm_ver }}.linux-aarch64.tar.gz
         key: libclang.so.${{ steps.version.outputs.llvm_ver }}.v2.linux-aarch64.tar.gz
+
+    - name: setup ccache
+      if: steps.cache-libclang.outputs.cache-hit != 'true'
+      uses: hendrikmuhs/ccache-action@v1
+      with:
+        key: ccache-linux-aarch64-${{ steps.version.outputs.llvm_ver }}-v1
+        restore-keys: |
+          ccache-linux-aarch64-
+        max-size: 2G
+        verbose: 1
 
     - name: get llvm-project
       run: sh scripts/download-llvm.sh

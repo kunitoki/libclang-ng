@@ -28,7 +28,8 @@ cmake "$TOP_DIR\build\llvm\src\llvm" `
     -DCLANG_INCLUDE_DOCS=OFF `
     -DLLVM_TARGETS_TO_BUILD=X86 `
     -DLLVM_USE_CRT_RELEASE=MT `
-    "-DCMAKE_CXX_FLAGS=/MP"
+    "-DCMAKE_C_COMPILER_LAUNCHER=sccache" `
+    "-DCMAKE_CXX_COMPILER_LAUNCHER=sccache"
 
 cmake --build . --config Release --target libclang -j $CPUS
 

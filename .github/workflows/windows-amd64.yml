@@ -70,6 +70,17 @@ jobs:
         path: build/llvm/cmake-build/Release/bin/libclang.dll.${{ steps.version.outputs.llvm_ver }}.windows-amd64.tar.gz
         key: libclang.dll.${{ steps.version.outputs.llvm_ver }}.windows-amd64.tar.gz
 
+    - name: setup sccache
+      if: steps.cache-libclang.outputs.cache-hit != 'true'
+      uses: hendrikmuhs/ccache-action@v1
+      with:
+        variant: sccache
+        key: sccache-windows-amd64-${{ steps.version.outputs.llvm_ver }}-v1
+        restore-keys: |
+          sccache-windows-amd64-
+        max-size: 2G
+        verbose: 1
+
     - name: get llvm-project
       shell: bash
       run: sh scripts/download-llvm.sh

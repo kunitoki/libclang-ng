@@ -72,6 +72,16 @@ jobs:
         path: build/llvm/cmake-build/lib/libclang.so.${{ steps.version.outputs.llvm_ver }}.linux-amd64.tar.gz
         key: libclang.so.${{ steps.version.outputs.llvm_ver }}.v2.linux-amd64.tar.gz
 
+    - name: setup ccache
+      if: steps.cache-libclang.outputs.cache-hit != 'true'
+      uses: hendrikmuhs/ccache-action@v1
+      with:
+        key: ccache-linux-amd64-${{ steps.version.outputs.llvm_ver }}-v1
+        restore-keys: |
+          ccache-linux-amd64-
+        max-size: 2G
+        verbose: 1
+
     - name: get llvm-project
       run: sh scripts/download-llvm.sh
 

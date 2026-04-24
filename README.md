@@ -1,4 +1,4 @@
-![Backdrop](https://raw.githubusercontent.com/kunitoki/libclang-ng/main/backdrop.jpeg?x=2)
+![Backdrop](https://raw.githubusercontent.com/kunitoki/libclang-ng/main/backdrop.jpg?x=2)
 
 [![PyPI](https://img.shields.io/pypi/v/libclang-ng?x=2)](https://pypi.org/project/libclang-ng)
 [![Python](https://img.shields.io/pypi/pyversions/libclang-ng?x=2)](https://pypi.org/project/libclang-ng)
